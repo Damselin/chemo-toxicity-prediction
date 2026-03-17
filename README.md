@@ -1,4 +1,4 @@
-# 💊 Chemotherapy Toxicity Predictor
+# Chemotherapy Toxicity Predictor
 
 Chemotherapy can be life-saving — but it can also come with serious side effects.
 
@@ -6,18 +6,18 @@ This project uses machine learning to **predict the risk of chemotherapy toxicit
 
 ---
 
-## 🚀 What it does
+## What it does
 
 - Takes patient details (age, BMI, symptoms, etc.)
 - Uses a trained ML model to analyze risk
 - Gives:
-  - 🔥 Toxicity risk score
-  - ⚠️ High / Low risk prediction
-  - 📊 Key contributing factors
+  - Toxicity risk score
+  -  High / Low risk prediction
+  -  Key contributing factors
 
 ---
 
-## 🧠 Why this matters
+##  Why this matters
 
 Chemotherapy toxicity can be unpredictable and dangerous.
 
