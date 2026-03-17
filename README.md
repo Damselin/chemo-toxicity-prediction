@@ -34,10 +34,3 @@ Early prediction can:
 - **Model:** Random Forest (Scikit-learn)
 - **Frontend:** HTML, CSS, JavaScript
 
----
-
-## 🖥️ How to run locally
-
-```bash
-cd BACKEND
-python app.py
