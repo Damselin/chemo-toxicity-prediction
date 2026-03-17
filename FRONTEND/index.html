@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chemo Toxicity Predictor</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        input, button {
+            margin: 6px;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        input {
+            width: 220px;
+        }
+
+        button {
+            background: #22c55e;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>💊 Chemotherapy Toxicity Predictor</h1>
+
+<div>
+    <input id="age" placeholder="Age"><br>
+    <input id="gender" placeholder="Gender (Male/Female)"><br>
+    <input id="bmi" placeholder="BMI"><br>
+    <input id="cycle" placeholder="Cycle"><br>
+    <input id="creatinine" placeholder="Creatinine"><br>
+    <input id="anc" placeholder="ANC"><br>
+    <input id="rash" placeholder="Rash (0-3)"><br>
+    <input id="neuropathy" placeholder="Neuropathy (0-3)"><br>
+    <input id="nausea" placeholder="Nausea (0-3)"><br>
+    <input id="fatigue" placeholder="Fatigue (0-3)"><br>
+</div>
+
+<button onclick="predict()">Predict</button>
+
+<div class="result" id="result"></div>
+
+<script>
+async function predict() {
+
+    const data = {
+        age: parseInt(document.getElementById("age").value),
+        gender: document.getElementById("gender").value,
+        bmi: parseFloat(document.getElementById("bmi").value),
+        cycle: parseInt(document.getElementById("cycle").value),
+        creatinine: parseFloat(document.getElementById("creatinine").value),
+        anc: parseFloat(document.getElementById("anc").value),
+        rash: parseInt(document.getElementById("rash").value),
+        neuropathy: parseInt(document.getElementById("neuropathy").value),
+        nausea: parseInt(document.getElementById("nausea").value),
+        fatigue: parseInt(document.getElementById("fatigue").value)
+    };
+
+    try {
+        const res = await fetch("http://127.0.0.1:5000/predict", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+
+        document.getElementById("result").innerHTML =
+            "🔥 Risk: " + result.risk.toFixed(2) +
+            "<br>Prediction: " + (result.prediction ? "High Risk ⚠️" : "Low Risk ✅");
+
+    } catch (err) {
+        document.getElementById("result").innerHTML = "❌ Error connecting to backend";
+    }
+}
+</script>
+
+</body>
+</html>

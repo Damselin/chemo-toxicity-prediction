@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS   # ✅ ADD THIS
 from data import generate_data
 from model import ToxicityModel
 
 app = Flask(__name__)
+CORS(app)   # ✅ ADD THIS)
 
 # Initialize
 model = ToxicityModel()
@@ -21,7 +23,7 @@ def predict():
     explanation = model.explain()
 
     return jsonify({
-        "toxicity_risk": float(prob),
+        "risk": float(prob),
         "prediction": int(pred),
         "top_factors": explanation
     })
